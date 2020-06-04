@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
+import UseDebugValueExample from './components/UseDebugValueExample'
+import UseImperativeHandleExample from './components/UseImperativeHandleExample'
+import UseLayoutEffectExample from './components/UseLayoutEffectExample'
+import UseRefExample from './components/UseRefExample'
+
 function App() {
+  const [state, setState] = useState('UseRefExample')
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="buttons">
+        <button onClick={() => setState('UseRefExample')}>UseRefExample</button>
+        <button onClick={() => setState('UseImperativeHandleExample')}>UseImperativeHandleExample</button>
+        <button onClick={() => setState('UseLayoutEffectExample')}>UseLayoutEffectExample</button>
+        <button onClick={() => setState('UseDebugValueExample')}>UseDebugValueExample</button>
+      </div>
+      <div>
+        {state === 'UseRefExample' && <UseRefExample/>}
+        {state === 'UseImperativeHandleExample' && <UseImperativeHandleExample/>}
+        {state === 'UseLayoutEffectExample' && <UseLayoutEffectExample/>}
+        {state === 'UseDebugValueExample' && <UseDebugValueExample />}
+      </div>
     </div>
   );
 }
